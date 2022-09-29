@@ -1,10 +1,13 @@
 import { useContext } from 'react';
 import { Redirect } from 'react-router-dom';
 import { UserContext } from '../../context/userContext';
+import { useItems } from '../../hooks/useItems';
 import { signOut } from '../../services/auth';
+import Item from '../Item/Item';
 import './Items.css';
 
 export default function Items() {
+  const items = useItems();
   const { user, setUser } = useContext(UserContext);
 
   if (!user) return <Redirect to="/auth/sign-in" />;
@@ -29,7 +32,14 @@ export default function Items() {
         <button onClick={handleSignOut}>Sign Out</button>
       </div>
       <h1>Shopping List</h1>
-      <ul>Items:</ul>
+      <ul>
+        Items:
+        {items.map((item) => (
+          <li key={item.id}>
+            <Item key={item.id} {...item} />
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
