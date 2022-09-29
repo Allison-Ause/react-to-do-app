@@ -3,11 +3,12 @@ import { Redirect } from 'react-router-dom';
 import { UserContext } from '../../context/userContext';
 import { useItems } from '../../hooks/useItems';
 import { signOut } from '../../services/auth';
+import { addItem } from '../../services/items';
 import Item from '../Item/Item';
 import './Items.css';
 
 export default function Items() {
-  const items = useItems();
+  const { items, setItems } = useItems();
   const { user, setUser } = useContext(UserContext);
   const [currentItem, setCurrentItem] = useState('');
 
@@ -27,7 +28,9 @@ export default function Items() {
   };
 
   const handleAddItem = async () => {
-    setCurrentItem((e) => e.target.value);
+    const addedItem = await addItem(currentItem);
+    setItems((prevState) => [...prevState, addedItem]);
+    setCurrentItem('');
   };
 
   return (
@@ -39,7 +42,8 @@ export default function Items() {
       <h1>Shopping List</h1>
       <label>
         Add New Item:
-        <input type="text" value={currentItem} onChange={handleAddItem} />
+        <input type="text" value={currentItem} onChange={(e) => setCurrentItem(e.target.value)} />
+        <button onClick={handleAddItem}>Add Item</button>
       </label>
       <ul>
         {items.map((item) => (

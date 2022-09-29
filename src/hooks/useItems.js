@@ -10,13 +10,7 @@ export function useItems() {
       setItems(data);
     }
     fetchData();
-  }, []);
+  }, [items]);
 
-  // DO I NEED A USE EFFECT TO PROTECT THE SERVICE? I THINK YES.
-
-  // useEffect(() => {
-  //   const addItem = async () => {};
-  // }, []);
-
-  return items;
+  return { items, setItems };
 }

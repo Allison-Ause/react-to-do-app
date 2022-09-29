@@ -10,7 +10,8 @@ export async function getItems() {
   return response.data;
 }
 
-export async function addItem(item) {
-  const response = await client.from('list').insert([{ item }]).single();
-  return response;
+export async function addItem(currentItem) {
+  const response = await client.from('list').insert({ item: currentItem }).single();
+  console.log('response from addItem', response.data);
+  return response.data;
 }
