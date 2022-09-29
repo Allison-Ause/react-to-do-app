@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { UserContext } from '../../context/userContext';
 import { useItems } from '../../hooks/useItems';
@@ -9,6 +9,7 @@ import './Items.css';
 export default function Items() {
   const items = useItems();
   const { user, setUser } = useContext(UserContext);
+  const [currentItem, setCurrentItem] = useState('');
 
   if (!user) return <Redirect to="/auth/sign-in" />;
 
@@ -25,6 +26,10 @@ export default function Items() {
     }
   };
 
+  const handleAddItem = async () => {
+    setCurrentItem((e) => e.target.value);
+  };
+
   return (
     <div>
       <div className="header">
@@ -32,8 +37,11 @@ export default function Items() {
         <button onClick={handleSignOut}>Sign Out</button>
       </div>
       <h1>Shopping List</h1>
+      <label>
+        Add New Item:
+        <input type="text" value={currentItem} onChange={handleAddItem} />
+      </label>
       <ul>
-        Items:
         {items.map((item) => (
           <li key={item.id}>
             <Item key={item.id} {...item} />
