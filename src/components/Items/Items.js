@@ -35,7 +35,7 @@ export default function Items() {
 
   return (
     <div>
-      <div className="header">
+      <div className="navbar header">
         <span>{`Hey there, ${firstName}!`}</span>
         <button onClick={handleSignOut}>Sign Out</button>
       </div>

@@ -22,7 +22,7 @@ export default function Auth() {
 
   return (
     <div>
-      <div className="auth-links">
+      <div className="navbar auth-links">
         <NavLink to="/auth/sign-in">Sign In</NavLink>
         <NavLink to="/auth/sign-up">Sign Up</NavLink>
       </div>
