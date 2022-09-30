@@ -12,6 +12,5 @@ export async function getItems() {
 
 export async function addItem(currentItem) {
   const response = await client.from('list').insert({ item: currentItem }).single();
-  console.log('response from addItem', response.data);
   return response.data;
 }
