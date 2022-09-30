@@ -10,7 +10,7 @@ export function useItems() {
       setItems(data);
     }
     fetchData();
-  }, [items]);
+  }, []);
 
   return { items, setItems };
 }
