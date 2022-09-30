@@ -16,12 +16,15 @@ export async function addItem(currentItem) {
 }
 
 export async function completeItem(item) {
-  console.log('Item going into service', item);
   const response = await client
     .from('list')
     .update({ bought: item.bought })
     .match({ id: item.id })
     .single();
-  console.log('response', response);
+  return response.data;
+}
+
+export async function deleteItem({ id }) {
+  const response = await client.from('list').delete().match({ id }).single();
   return response.data;
 }

@@ -1,5 +1,5 @@
 import { useItems } from '../../hooks/useItems';
-import { completeItem } from '../../services/items';
+import { completeItem, deleteItem } from '../../services/items';
 import './Item.css';
 
 export default function Item({ id, item, bought }) {
@@ -8,18 +8,27 @@ export default function Item({ id, item, bought }) {
 
   const handleComplete = async () => {
     const itemToUpdate = { id, bought: !bought };
-    console.log('Item inserted', item);
     const updatedItem = await completeItem(itemToUpdate);
-    console.log('updatedItem', updatedItem);
     setItems((prevState) => [...prevState, updatedItem]);
   };
+
+  const handleDelete = async () => {
+    await deleteItem({ id });
+    // setItems((prevState) => [prevState.filter.splice(deletedItem)]);
+    setItems((prevState) => [prevState.filter((deletedItem) => deletedItem.id !== id)]);
+  };
+
   return (
     <div>
-      <span onDoubleClick={handleComplete} value={bought} className={bought ? 'bought' : ''}>
+      <span
+        onClick={handleComplete}
+        onDoubleClick={handleDelete}
+        value={bought}
+        className={bought ? 'bought' : ''}
+      >
         {/* if true, left side returns */}
         {item}
       </span>
-      {/* <span>{quantity}</span> */}
     </div>
   );
 }
