@@ -1,5 +1,3 @@
-// for fetch calls to database!
-
 import { client } from './client';
 
 export async function getItems() {

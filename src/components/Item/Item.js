@@ -4,7 +4,6 @@ import './Item.css';
 
 export default function Item({ id, item, bought }) {
   const { setItems } = useItems();
-  //add bought & quantity to props when ready to handleBought
 
   const handleComplete = async () => {
     const itemToUpdate = { id, bought: !bought };
@@ -14,7 +13,6 @@ export default function Item({ id, item, bought }) {
 
   const handleDelete = async () => {
     await deleteItem({ id });
-    // setItems((prevState) => [prevState.filter.splice(deletedItem)]);
     setItems((prevState) => [prevState.filter((deletedItem) => deletedItem.id !== id)]);
   };
 

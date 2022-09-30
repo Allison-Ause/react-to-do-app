@@ -1,7 +1,9 @@
+import { Button } from '@chakra-ui/react';
 import { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import { UserContext } from '../../context/userContext';
 import { signOut } from '../../services/auth';
+import './NavBar.css';
 
 export default function NavBar() {
   const { user, setUser } = useContext(UserContext);
@@ -24,14 +26,20 @@ export default function NavBar() {
       <div>
         {!user && (
           <div className="navbar auth-links">
-            <NavLink to="/auth/sign-in">Sign In</NavLink>
-            <NavLink to="/auth/sign-up">Sign Up</NavLink>
+            <Button mr="10px" colorScheme="white" variant="outline">
+              <NavLink to="/auth/sign-in">Sign In</NavLink>
+            </Button>
+            <Button ml="10px" colorScheme="white" variant="outline">
+              <NavLink to="/auth/sign-up">Sign Up</NavLink>
+            </Button>
           </div>
         )}
         {user && (
           <div className="navbar header">
             <span>{`Hey there, ${firstName}!`}</span>
-            <button onClick={handleSignOut}>Sign Out</button>
+            <Button colorScheme="white" variant="outline" onClick={handleSignOut}>
+              Sign Out
+            </Button>
           </div>
         )}
       </div>

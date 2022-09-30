@@ -1,0 +1,13 @@
+.auth-links {
+  display: flex;
+  justify-content: center;
+  font-family: 'Black Han Sans', sans-serif;
+  margin: 20px;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
