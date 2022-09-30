@@ -14,3 +14,8 @@ export async function addItem(currentItem) {
   const response = await client.from('list').insert({ item: currentItem }).single();
   return response.data;
 }
+
+export async function completeItem(item) {
+  const response = await client.from('list').update(item).match({ id: item.id }).single();
+  return response.data;
+}
