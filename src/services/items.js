@@ -19,6 +19,7 @@ export async function completeItem(item) {
     .update({ bought: item.bought })
     .match({ id: item.id })
     .single();
+  console.log('response.data', response.data);
   return response.data;
 }
 

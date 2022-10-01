@@ -18,7 +18,7 @@ export default function Items() {
 
   const handleAddItem = async () => {
     const addedItem = await addItem(currentItem);
-    setItems((prevState) => [...prevState, addedItem]);
+    setItems((prevState) => [addedItem, ...prevState]);
     setCurrentItem('');
   };
 
@@ -48,7 +48,7 @@ export default function Items() {
         <List w="450px" spacing={3}>
           {items.map((item) => (
             <ListItem key={item.id}>
-              <Item key={item.id} {...item} />
+              <Item key={item.id} {...item} setItems={setItems} />
             </ListItem>
           ))}
         </List>
