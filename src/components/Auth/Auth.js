@@ -33,9 +33,9 @@ export default function Auth() {
           </InputLeftElement>
           <Input
             placeholder="Email Address"
+            type="email"
             mb="15px"
             w="350px"
-            type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
@@ -48,9 +48,9 @@ export default function Auth() {
           </InputLeftElement>
           <Input
             placeholder="Password"
+            type="password"
             mb="15px"
             w="350px"
-            type="text"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />

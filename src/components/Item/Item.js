@@ -19,7 +19,6 @@ export default function Item({ id, item, bought, setItems }) {
   };
 
   const handleDelete = async () => {
-    console.log('firing');
     await deleteItem({ id });
     setItems(await getItems());
     // (prevState) => [prevState.filter((deletedItem) => deletedItem.id !== id)]
