@@ -1,4 +1,6 @@
 // import { useItems } from '../../hooks/useItems';
+import { DeleteIcon } from '@chakra-ui/icons';
+import { IconButton } from '@chakra-ui/react';
 import { completeItem, deleteItem } from '../../services/items';
 import { getItems } from '../../services/items';
 import './Item.css';
@@ -17,6 +19,7 @@ export default function Item({ id, item, bought, setItems }) {
   };
 
   const handleDelete = async () => {
+    console.log('firing');
     await deleteItem({ id });
     setItems(await getItems());
     // (prevState) => [prevState.filter((deletedItem) => deletedItem.id !== id)]
@@ -24,16 +27,18 @@ export default function Item({ id, item, bought, setItems }) {
   };
 
   return (
-    <div>
-      <span
-        onClick={handleComplete}
-        onDoubleClick={handleDelete}
-        value={bought}
-        className={bought ? 'bought' : ''}
-      >
+    <div className="item-line">
+      <span onClick={handleComplete} value={bought} className={bought ? 'bought' : ''}>
         {/* if true, left side returns */}
         {item}
       </span>
+      <IconButton
+        aria-label="Delete Item"
+        icon={<DeleteIcon />}
+        variant="ghost"
+        colorScheme="teal"
+        onClick={handleDelete}
+      />
     </div>
   );
 }

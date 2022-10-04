@@ -5,3 +5,7 @@
   text-decoration-style: wavy;
   text-decoration: italic;
 }
+
+.list-line {
+  display: flex;
+}
